@@ -12,7 +12,7 @@ SRC =	command_hook.c\
 		main.c\
 		render_frame.c\
 		close_game.c\
-		crotate_player.c\
+		rotate_player.c\
 
 OBJ = $(SRC:.c=.o)
 
