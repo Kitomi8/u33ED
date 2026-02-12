@@ -6,20 +6,22 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 11:46:10 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/06 09:22:44 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/12 18:27:48 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/* cub3d.h                                                                  */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <math.h>     
-# include <stdlib.h>   
-# include <stdio.h>    
-# include <unistd.h>   
-# include <fcntl.h>    
-# include "mlx.h"
-
+# include <math.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include "minilibx-linux/mlx.h"
 # define K_W 119
 # define K_A 97
 # define K_S 115
@@ -29,8 +31,9 @@
 # define K_ESC 65307
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
-
-//     STRUCTURES
+#define W 1024
+#define H 768
+# define INF 1e30
 
 typedef struct s_img
 {
@@ -45,23 +48,24 @@ typedef struct s_data
 {
     void    *mlx_ptr;
     void    *win_ptr;
-    char    **map;           // Tableau 2D pour la carte
-    // Position et Direction
+    char    **map;
     double  posX;
     double  posY;
     double  dirX;
     double  dirY;
     double  planeX;
     double  planeY;
-    // Couleurs (Format RGB)
+    t_img   screen; 
     int     floor_color;
     int     ceiling_color;
-    // Textures
-    t_img   tex_no;
-    t_img   tex_so;
-    t_img   tex_we;
-    t_img   tex_ea;
+
 }   t_data;
 
+int     handle_keypress(int keycode, t_data *data);
+int     render_frame(t_data *data);
+int     close_game(t_data *data);
+void    rotate_player(t_data *data, double angle);
+void    init_game_data(t_data *data);
+void    free_map(char **map);
 
 #endif

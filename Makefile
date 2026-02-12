@@ -1,37 +1,33 @@
 NAME = cube3D
-
 CC = cc
+FLAGS = -Wall -Wextra -Werror -g
+MLX_PATH = ./minilibx-linux
+MLX_NAME = mlx
+MLX_LIB = $(MLX_PATH)/lib$(MLX_NAME).a
+MLX_INC = -I$(MLX_PATH)
+MLX_LINK = -L$(MLX_PATH) -l$(MLX_NAME) -lXext -lX11 -lm -lbsd
 
-FLAGS = -Wall -Wextra -Werror -I
-
-MLX_PATH = ./mlx
-
-MLX_LINK = -L$(MLX_PATH) -lmlx -lXnet -lX11 -lm
-
-SRC =	command_hook.c\
-		main.c\
-		render_frame.c\
-		close_game.c\
-		rotate_player.c\
-
+SRC = main.c init_game.c render_frame.c command_hook.c rotate_player.c close_game.c
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all: $(MLX_LIB) $(NAME)
+
+$(MLX_LIB):
+	@make -C $(MLX_PATH)
 
 $(NAME): $(OBJ)
-	@make -C $(MLX_PATH)
-	$(CC) $(PBJ) $(MLX_LINK) -o $(NAME)
+	$(CC) $(OBJ) $(MLX_LINK) -o $(NAME)
 
 %.o: %.c
-		$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(MLX_INC) -c $< -o $@
 
 clean:
+	rm -f $(OBJ)
 	@make -C $(MLX_PATH) clean
-	rm -rf $(OBJ)
 
-ftclean: clean
-		rm -rf $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
-re: all
+re: fclean all
 
 .PHONY: all clean fclean re
