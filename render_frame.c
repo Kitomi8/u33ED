@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:20:18 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/12 18:26:36 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/16 15:54:14 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	render_frame(t_data *data)
 		mapY = (int)data->posY;
 		deltaDistX = get_delta_dist(rayDirX);
 		deltaDistY = get_delta_dist(rayDirY);
-		// 3. Calcul du Step et SideDist
 		if (rayDirX < 0)
 		{
 			stepX = -1;
@@ -161,7 +160,7 @@ int	render_frame(t_data *data)
 			color = 0x00FF00;
 		if (side == 1)
 			color = color / 2;
-    	draw_ver_line(data, x, drawStart, drawEnd, color);
+		draw_ver_line(data, x, drawStart, drawEnd, color);
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->screen.img, 0, 0);

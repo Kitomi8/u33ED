@@ -6,29 +6,66 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:20:51 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/12 18:12:00 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:57:07 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
-int handle_keypress(int keycode, t_data *data)
+static void	try_move(t_data *data, double moveX, double moveY)
 {
-    if (keycode == K_ESC)
-        close_game(data);
-    if (keycode == K_W)
+    int currentPosY_map;
+    int currentPosX_map;
+	int nextPosX_map;
+    int nextPosY_map;
+    double old_x;
+	double old_y;
+    
+    old_x = data->posX;
+    old_y = data->posY;
+    nextPosX_map = (int)(data->posX + moveX);
+    currentPosY_map = (int)(data->posY);
+	if (data->map[currentPosY_map][nextPosX_map] != '1')
+	{
+		data->posX += moveX;
+	}
+    currentPosX_map = (int)(data->posX);
+    nextPosY_map = (int)(data->posY + moveY);
+
+	if (data->map[nextPosY_map][currentPosX_map] != '1')
+	{
+		data->posY += moveY;
+	}
+    if (data->posX != old_x || data->posY != old_y)
+	{
+		printf("[mouvement : Pos( X:%.2f , Y:%.2f ) - Case[%d][%d]\n", 
+		data->posX, data->posY, (int)data->posX, (int)data->posY);
+	}
+}
+
+int	handle_keypress(int keycode, t_data *data)
+{
+	if (keycode == K_ESC)
+		close_game(data);
+	if (keycode == K_W)
+		try_move(data, data->dirX * MOVE_SPEED, data->dirY * MOVE_SPEED);
+	if (keycode == K_S)
+		try_move(data, -data->dirX * MOVE_SPEED, -data->dirY * MOVE_SPEED);
+	if (keycode == K_D)
+		try_move(data, data->planeX * MOVE_SPEED, data->planeY * MOVE_SPEED);
+	if (keycode == K_A)
+		try_move(data, -data->planeX * MOVE_SPEED, -data->planeY * MOVE_SPEED);
+	if (keycode == K_RIGHT)
     {
-        data->posX += data->dirX * MOVE_SPEED;
-        data->posY += data->dirY * MOVE_SPEED;
+		rotate_player(data, -ROT_SPEED);
+        printf("Rotation Droite : Dir( X:%.2f , Y:%.2f )\n", data->dirX, data->dirY);
     }
-    if (keycode == K_S)
+	if (keycode == K_LEFT)
     {
-        data->posX -= data->dirX * MOVE_SPEED;
-        data->posY -= data->dirY * MOVE_SPEED;
+		rotate_player(data, ROT_SPEED);
+        printf("Rotation Gauche : Dir( X:%.2f , Y:%.2f )\n", data->dirX, data->dirY);
     }
-    if (keycode == K_RIGHT)
-        rotate_player(data, -ROT_SPEED);
-    if (keycode == K_LEFT)
-        rotate_player(data, ROT_SPEED);
-    return (0);
+
+	return (0);
 }
