@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:20:51 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/16 17:57:07 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:02:46 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ int	handle_keypress(int keycode, t_data *data)
 		rotate_player(data, ROT_SPEED);
         printf("Rotation Gauche : Dir( X:%.2f , Y:%.2f )\n", data->dirX, data->dirY);
     }
-
 	return (0);
 }

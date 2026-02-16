@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 11:46:10 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/12 18:27:48 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:04:04 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define K_ESC 65307
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
-#define W 1024
-#define H 768
+# define W 1024
+# define H 768
 # define INF 1e30
 
 typedef struct s_img
@@ -59,7 +59,7 @@ typedef struct s_data
     int     floor_color;
     int     ceiling_color;
 
-}   t_data;
+} t_data;
 
 int     handle_keypress(int keycode, t_data *data);
 int     render_frame(t_data *data);

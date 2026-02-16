@@ -6,14 +6,11 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:20:18 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/16 15:54:14 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:03:50 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define W 1024
-#define H 768
 
 static double	ft_abs(double x)
 {
