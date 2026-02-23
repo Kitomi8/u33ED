@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:12:30 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/12 18:30:57 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/23 19:32:50 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,17 @@ int main(int ac, char **av)
 {
     t_data data;
 
-    (void)ac;
-    (void)av; 
+    if (ac != 2)
+    {
+        printf("Usage : ./cub3D [file.cub]\n");
+        return (1);
+    }
+    if (!check_arg(av[1]))
+    {
+        printf("error : please insert file with '.cub'\n");
+        return (1);
+    }
+    // printf ("mandeha ny fichier\n");
     data.mlx_ptr = mlx_init();
     if (!data.mlx_ptr)
         return (1);

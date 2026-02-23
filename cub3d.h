@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 11:46:10 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/16 18:04:04 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/23 19:18:07 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int     close_game(t_data *data);
 void    rotate_player(t_data *data, double angle);
 void    init_game_data(t_data *data);
 void    free_map(char **map);
+int check_arg(char *str);
 
 #endif
