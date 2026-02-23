@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
+/*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:12:30 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/23 19:32:50 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/02/23 22:01:11 by nambrako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "include/cub3d.h"
 
 int main(int ac, char **av)
 {
@@ -21,7 +21,7 @@ int main(int ac, char **av)
         printf("Usage : ./cub3D [file.cub]\n");
         return (1);
     }
-    if (!check_arg(av[1]))
+    if (!check_arg(av[1]) && !parse(data, av[1]))
     {
         printf("error : please insert file with '.cub'\n");
         return (1);
