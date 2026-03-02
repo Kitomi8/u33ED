@@ -6,23 +6,23 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:14:42 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/17 23:44:44 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:55:11 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "include/cub3d.h"
 
 static char	*ft_strdup(const char *s)
 {
-	int		i;
+    int		i;
 	char	*dest;
-
+    
     i = 0;
 	while (s[i])
-        i++;
+    i++;
 	dest = malloc(sizeof(char) * (i + 1));
 	if (!dest)
-        return (NULL);
+    return (NULL);
 	i = 0;
 	while (s[i])
     {
@@ -43,8 +43,9 @@ void	init_game_data(t_data *data)
     data->posY = 5.5;
     data->floor_color = 0x222222;   // Gris foncé
     data->ceiling_color = 0x444444; // Gris clair
-
-
+    char *paths[4] = {"./textures/north.xpm", "./textures/south.xpm", "./textures/east.xpm", "./textures/west.xpm"};
+    
+    
 data->map = malloc(sizeof(char *) * 11);
 data->map[0]  = ft_strdup("111111111111");
 data->map[1]  = ft_strdup("100000000001");
@@ -57,4 +58,16 @@ data->map[7]  = ft_strdup("100011111111");
 data->map[8]  = ft_strdup("100000000001");
 data->map[9]  = ft_strdup("111111111111");
 data->map[10] = NULL;
+int i = 0;
+while (i < 4)
+{
+	data->wall_imgs[i].img = mlx_xpm_file_to_image(data->mlx_ptr, paths[i], &data->wall_imgs[i].width, &data->wall_imgs[i].height);
+	if (!data->wall_imgs[i].img)
+	{
+		printf("Error\nImpossible de charger la texture : %s\n", paths[i]);
+		exit(1);
+	}
+    data->wall_imgs[i].addr = mlx_get_data_addr(data->wall_imgs[i].img, &data->wall_imgs[i].bits_per_pixel, &data->wall_imgs[i].line_length, &data->wall_imgs[i].endian);
+	i++;
+}
 }

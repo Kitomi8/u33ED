@@ -3,15 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 11:46:10 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/23 21:09:32 by nambrako         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:52:35 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/* cub3d.h                                                                  */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
@@ -35,5 +31,8 @@ int     render_frame(t_data *data);
 void    init_game_data(t_data *data);
 int     close_game(t_data *data);
 void    free_map(char **map);
+void    run_raycasting_math(t_data *data, t_ray *ray, int x);
+int	ft_strlen(const char *s);
+int	ft_strcmp(const char *s1, const char *s2);
 
 #endif

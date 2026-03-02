@@ -6,11 +6,11 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:25:07 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/12 17:57:33 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:35:27 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "include/cub3d.h"
 
 void	free_map(char **map)
 {
@@ -23,8 +23,9 @@ void	free_map(char **map)
 
 int close_game(t_data *data)
 {
+    if (data->screen.img)
+        mlx_destroy_image(data->mlx_ptr, data->screen.img); // Ajout crucial
     mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-    // mlx_destroy_display(data->mlx_ptr); 
     free(data->mlx_ptr);
     free_map(data->map);
     exit(0);

@@ -6,11 +6,11 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:20:51 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/17 19:16:31 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:41:15 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "include/cub3d.h"
 #include <stdio.h>
 
 static void	try_move(t_data *data, double moveX, double moveY)

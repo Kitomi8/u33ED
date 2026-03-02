@@ -6,11 +6,11 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 11:46:06 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/12 18:31:19 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:41:30 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "include/cub3d.h"
 
 void    rotate_player(t_data *data, double angle)
 {

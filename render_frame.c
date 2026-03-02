@@ -6,25 +6,11 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:20:18 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/02/16 18:03:50 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/02 07:09:27 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-static double	ft_abs(double x)
-{
-	if (x < 0)
-		return (-x);
-	return (x);
-}
-
-static double	get_delta_dist(double ray_dir)
-{
-	if (ray_dir == 0)
-		return (1e30);
-	return (ft_abs(1 / ray_dir));
-}
+#include "include/cub3d.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -32,132 +18,63 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	if (x < 0 || x >= W || y < 0 || y >= H)
 		return ;
-	dst = data->screen.addr + (y * data->screen.line_length + x * (data->screen.bits_per_pixel / 8));
+	dst = data->screen.addr + (y * data->screen.line_length
+			+ x * (data->screen.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-//rendu sol sy plafond sy mur ty
-void	draw_ver_line(t_data *data, int x, int start, int end, int color)
-{
-	int	y;
-
-	y = 0;
-	// 1. Plafond
-	while (y < start)
-	{
-		my_mlx_pixel_put(data, x, y, data->ceiling_color);
-		y++;
-	}
-	// 2. Mur
-	while (y <= end)
-	{
-		my_mlx_pixel_put(data, x, y, color);
-		y++;
-	}
-	// 3. Sol
-	while (y < H)
-	{
-		my_mlx_pixel_put(data, x, y, data->floor_color);
-		y++;
-	}
 }
 
 int	render_frame(t_data *data)
 {
-	int		x;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
-	int		hit;
-	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
-	int		color;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
+	t_ray			ray;
+	int				x;
+	int				y;
+	unsigned int	color;
+	char			*dst;
 
 	x = 0;
 	while (x < W)
 	{
-		// 2. Initialisation Rayon
-		cameraX = 2 * x / (double)W - 1;
-		rayDirX = data->dirX + data->planeX * cameraX;
-		rayDirY = data->dirY + data->planeY * cameraX;	
-		mapX = (int)data->posX;
-		mapY = (int)data->posY;
-		deltaDistX = get_delta_dist(rayDirX);
-		deltaDistY = get_delta_dist(rayDirY);
-		if (rayDirX < 0)
+		run_raycasting_math(data, &ray, x);
+		if (ray.side == 0)
 		{
-			stepX = -1;
-			sideDistX = (data->posX - mapX) * deltaDistX;
+			ray.texNum = 2; // Est par défaut
+			if (ray.rayDirX > 0)
+				ray.texNum = 3; // Ouest
+			ray.wallX = data->posY + ray.perpWallDist * ray.rayDirY;
 		}
 		else
 		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - data->posX) * deltaDistX;
+			ray.texNum = 0; // Nord par défaut
+			if (ray.rayDirY > 0)
+				ray.texNum = 1; // Sud
+			ray.wallX = data->posX + ray.perpWallDist * ray.rayDirX;
 		}
-		if (rayDirY < 0)
+		ray.wallX -= floor(ray.wallX);
+		ray.texX = (int)(ray.wallX * (double)data->wall_imgs[ray.texNum].width);
+		if ((ray.side == 0 && ray.rayDirX > 0) || (ray.side == 1 && ray.rayDirY < 0))
+			ray.texX = data->wall_imgs[ray.texNum].width - ray.texX - 1;
+		ray.step = 1.0 * data->wall_imgs[ray.texNum].height / ray.lineHeight;
+		ray.texPos = (ray.drawStart - H / 2 + ray.lineHeight / 2) * ray.step;
+		y = -1;
+		while (++y < ray.drawStart) // Plafond
+			my_mlx_pixel_put(data, x, y, data->ceiling_color);
+		
+		y--;
+		while (++y <= ray.drawEnd) // Mur
 		{
-			stepY = -1;
-			sideDistY = (data->posY - mapY) * deltaDistY;
+			ray.texY = (int)ray.texPos & (data->wall_imgs[ray.texNum].height - 1);
+			ray.texPos += ray.step;
+			dst = data->wall_imgs[ray.texNum].addr + (ray.texY
+					* data->wall_imgs[ray.texNum].line_length + ray.texX
+					* (data->wall_imgs[ray.texNum].bits_per_pixel / 8));
+			color = *(unsigned int *)dst;
+			my_mlx_pixel_put(data, x, y, color);
 		}
-		else
-		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - data->posY) * deltaDistY;
-		}
-		// 4. DDA (Raycasting loop)
-		hit = 0;
-		while (hit == 0)
-		{
-			if (sideDistX < sideDistY)
-			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
-			}
-			else
-			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
-			}
-			if (data->map[mapX][mapY] > '0')
-				hit = 1;
-		}
+		
+		y--;
+		while (++y < H) // Sol
+			my_mlx_pixel_put(data, x, y, data->floor_color);
 
-		// 5. Calcul distance et hauteur mur
-		if (side == 0)
-			perpWallDist = (sideDistX - deltaDistX);
-		else
-			perpWallDist = (sideDistY - deltaDistY);
-
-		lineHeight = (int)(H / perpWallDist);
-
-		drawStart = -lineHeight / 2 + H / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		drawEnd = lineHeight / 2 + H / 2;
-		if (drawEnd >= H)
-			drawEnd = H - 1;
-
-		// rouge = Nord/Sud, Vert = Est/Ouest
-		if (side == 0)
-			color = 0xFF0000;
-		else
-			color = 0x00FF00;
-		if (side == 1)
-			color = color / 2;
-		draw_ver_line(data, x, drawStart, drawEnd, color);
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->screen.img, 0, 0);

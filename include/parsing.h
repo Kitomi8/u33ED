@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 19:55:14 by nambrako          #+#    #+#             */
-/*   Updated: 2026/02/23 21:20:05 by nambrako         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:43:36 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-# include "cub3d.h"
 
-
-
-
-int check_arg(char *str);
+void    parse_args(int argc, char **argv);
 
 #endif

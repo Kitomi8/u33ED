@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frame.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 19:48:56 by nambrako          #+#    #+#             */
-/*   Updated: 2026/02/23 21:09:26 by nambrako         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:57:23 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_img
     int     bits_per_pixel;
     int     line_length;
     int     endian;
+    int		width;
+    int		height;  
 }   t_img;
 
 
