@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:12:30 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/03/02 06:45:55 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/04 09:41:00 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ int main(int ac, char **av)
 {
     t_data data;
 
-    parse_args(ac, av);
+    (void)ac;
+    (void)av;
+    // parse_args(ac, av);
+    init_game_data(&data);
     data.mlx_ptr = mlx_init();
     if (!data.mlx_ptr)
         return (1);
