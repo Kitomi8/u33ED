@@ -7,7 +7,16 @@ MLX_LIB = $(MLX_PATH)/lib$(MLX_NAME).a
 MLX_INC = -I$(MLX_PATH)
 MLX_LINK = -L$(MLX_PATH) -l$(MLX_NAME) -lXext -lX11 -lm -lbsd
 
-SRC = main.c parsing/check_arg.c utils.c init_game.c render_frame.c raycasting.c command_hook.c rotate_player.c close_game.c
+SRC =	main.c\
+		init_game.c\
+		parsing/check_arg.c\
+		utils/utils.c\
+		raycasting/render_frame.c\
+		raycasting/raycasting.c\
+		command_hook/close_game.c
+		command_hook/command_hook.c\
+		raycasting/rotate_player.c\
+
 OBJ = $(SRC:.c=.o)
 
 all: $(MLX_LIB) $(NAME)
