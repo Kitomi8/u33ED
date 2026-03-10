@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 11:46:10 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/03/06 16:38:47 by nambrako         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:30:59 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "get_next_line.h"
+#include "../get_next_line/get_next_line.h"
 
 void    rotate_player(t_data *data, double angle);
 int     render_frame(t_data *data);
