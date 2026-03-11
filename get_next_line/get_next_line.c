@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nambrako <nambrako@student.42antananari    +#+  +:+       +#+        */
+/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 06:48:18 by nambrako          #+#    #+#             */
-/*   Updated: 2025/04/08 16:12:16 by nambrako         ###   ########.fr       */
+/*   Updated: 2026/03/11 16:07:22 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,4 @@ char	*get_next_line(int fd)
 	to_return = check_line(line);
 	line = update_line(line);
 	return (to_return);
-}
-#include <fcntl.h>
-#include <stdio.h>
-int	main()
-{
-	int	fd = open("cat.txt", O_RDONLY);
-	char *line;
-	
-	while ((line = get_next_line(fd)))
-	{
-		printf("%s", line);
-		free(line);
-	}
-	close (fd);
-	return (0);
 }

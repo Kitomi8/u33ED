@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 19:48:56 by nambrako          #+#    #+#             */
-/*   Updated: 2026/03/02 06:57:23 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/11 17:14:53 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRAME_H
 # define W 1024
 # define H 768
+# define SIZE 15
 # include "cub3d.h"
 # include "data.h"
 

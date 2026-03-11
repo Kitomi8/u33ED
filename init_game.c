@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:14:42 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/03/04 10:03:16 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/11 16:25:05 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,14 @@ void	init_game_data(t_data *data)
     data->posY = 5.5;
     data->floor_color = 0x222222;   // Gris foncé
     data->ceiling_color = 0x444444; // Gris clair
-    char *paths[4] = {"./texture/Texturelabs_Brick_159S.xpm", "./texture/Texturelabs_Brick_159S (another copy).xpm", "./textures/Texturelabs_Brick_159S (copy).xpm", "./textures/Texturelabs_Brick_159S.xpm"};
+    // Correction des chemins (texture sans 's' et vrais noms de fichiers)
+// Remettez bien "texture" au singulier pour correspondre à votre vrai dossier :
+    char *paths[4] = {
+        "./texture/Texturelabs_Brick_159S.xpm", 
+        "./texture/Texturelabs_Brick_159S (another copy).xpm", 
+        "./texture/Texturelabs_Brick_159S (copy).xpm", 
+        "./texture/Texturelabs_Brick_159S (3rd copy).xpm"
+    };
     
     
     data->map = malloc(sizeof(char *) * 11);

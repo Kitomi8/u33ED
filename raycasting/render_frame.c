@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:20:18 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/03/02 07:09:27 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/11 17:06:26 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
-
-	if (x < 0 || x >= W || y < 0 || y >= H)
-		return ;
+		
+	if (x < 0 || y < 0 || x >= 1024 || y >= 768)
+        return;
 	dst = data->screen.addr + (y * data->screen.line_length
 			+ x * (data->screen.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
@@ -77,6 +77,7 @@ int	render_frame(t_data *data)
 
 		x++;
 	}
+	render_minimap(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->screen.img, 0, 0);
 	return (0);
 }
