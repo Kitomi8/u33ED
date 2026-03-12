@@ -6,7 +6,7 @@
 /*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 20:12:30 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/03/12 13:31:01 by nambrako         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:09:27 by nambrako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	ft_memset(&data, 0, sizeof(t_data));
 
 	/* 1. Parser les arguments et charger la map */
-	parse_args(ac, av, &data);
+	parse_args(ac, av);
 
 	/* 2. Initialiser MLX */
 	data.mlx_ptr = mlx_init();

@@ -6,11 +6,12 @@
 /*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 21:48:20 by nambrako          #+#    #+#             */
-/*   Updated: 2026/03/12 13:51:44 by nambrako         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:18:54 by nambrako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
 
 static int	has_cub_extension(char *filename)
 {
@@ -32,39 +33,33 @@ static void	error_exit(char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void	parse_file(int fd, t_data *data)
+void	parse_file(int fd)
 {
 	char	*line;
 
 	line = get_next_line(fd);
 	while (line)
 	{
-		parse_line(line, data);
+		printf("%s", line);  // pour tester
 		free(line);
 		line = get_next_line(fd);
 	}
 }
 
-void	parse_args(int ac, char **av, t_data *data)
+void	parse_args(int argc, char **argv)
 {
 	int	fd;
 
-	if (ac != 2)
-	{
-		printf("Error\nUsage: ./cub3D map.cub\n");
-		exit(1);
-	}
-	if (!has_cub_extension(av[1]))
-	{
-		printf("Error\nMap must have .cub extension\n");
-		exit(1);
-	}
-	fd = open(av[1], O_RDONLY);
+	if (argc != 2)
+		error_exit("Usage: ./cub3D map.cub");
+
+	if (!has_cub_extension(argv[1]))
+		error_exit("File must have .cub extension");
+
+	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-	{
-		printf("Error\nCannot open map file\n");
-		exit(1);
-	}
-	parse_file(fd, data);
+		error_exit("Cannot open file");
+
+	parse_file(fd);
 	close(fd);
 }

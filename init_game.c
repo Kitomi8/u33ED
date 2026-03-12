@@ -6,32 +6,11 @@
 /*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:14:42 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/03/12 13:55:34 by nambrako         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:10:17 by nambrako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
-
-static char	*ft_strdup(const char *s)
-{
-    int		i;
-	char	*dest;
-    
-    i = 0;
-	while (s[i])
-    i++;
-	dest = malloc(sizeof(char) * (i + 1));
-	if (!dest)
-    return (NULL);
-	i = 0;
-	while (s[i])
-    {
-        dest[i] = s[i];
-        i++;
-    }
-	dest[i] = '\0';
-	return (dest);
-}
 
 void	init_game_data(t_data *data)
 {
@@ -53,18 +32,18 @@ void	init_game_data(t_data *data)
     };
     
     
-    // data->map = malloc(sizeof(char *) * 11);
-    // data->map[0]  = ft_strdup("111111111111");
-    // data->map[1]  = ft_strdup("100000000001");
-    // data->map[2]  = ft_strdup("100010000001");
-    // data->map[3]  = ft_strdup("100000010001");
-    // data->map[4]  = ft_strdup("100000010111");
-    // data->map[5]  = ft_strdup("100000010111");
-    // data->map[6]  = ft_strdup("100010010111");
-    // data->map[7]  = ft_strdup("100011111111");
-    // data->map[8]  = ft_strdup("100000000001");
-    // data->map[9]  = ft_strdup("111111111111");
-    // data->map[10] = NULL;
+    data->map = malloc(sizeof(char *) * 11);
+    data->map[0]  = ft_strdup("111111111111");
+    data->map[1]  = ft_strdup("100000000001");
+    data->map[2]  = ft_strdup("100010000001");
+    data->map[3]  = ft_strdup("100000010001");
+    data->map[4]  = ft_strdup("100000010111");
+    data->map[5]  = ft_strdup("100000010111");
+    data->map[6]  = ft_strdup("100010010111");
+    data->map[7]  = ft_strdup("100011111111");
+    data->map[8]  = ft_strdup("100000000001");
+    data->map[9]  = ft_strdup("111111111111");
+    data->map[10] = NULL;
     int i = 0;
     while (i < 4)
     {
