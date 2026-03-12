@@ -1,4 +1,7 @@
 NAME = cube3D
+
+LIBFT = ./src/ft_libft/libft.a
+
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g
 MLX_PATH = ./minilibx-linux
@@ -27,17 +30,19 @@ $(MLX_LIB):
 	@make -C $(MLX_PATH)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX_LINK) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) $(MLX_LINK) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(FLAGS) -I. $(MLX_INC) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
+	make clean -C ./libft
 	@make -C $(MLX_PATH) clean
 
 fclean: clean
 	rm -f $(NAME)
+	rm -rf $(LIBFT)
 
 re: fclean all
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
+/*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 12:47:34 by nambrako          #+#    #+#             */
-/*   Updated: 2026/03/11 16:13:58 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/12 13:47:31 by nambrako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "../libft/libft.h"
 
-char    *ft_strchr(char *s, int c);
-void    *ft_calloc(size_t n, size_t size);
 char    *concatenate_line(char *s1, char *s2);
 char    *read_line_and_store(int fd, char *line);
 char    *get_next_line(int fd);
-int     ft_strlen(const char *s);
 
 #endif

@@ -3,51 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
+/*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 12:32:19 by nambrako          #+#    #+#             */
-/*   Updated: 2026/03/11 16:14:29 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/12 13:47:06 by nambrako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#include "get_next_line.h"
+// char    *ft_strchr(char *s, int c)
+// {
+//     int     i;
 
-char    *ft_strchr(char *s, int c)
-{
-    int     i;
+//     i = 0;
+//     if (!s)
+//         return (NULL);
+//     while (s[i] && s[i] != c)
+//     {
+//         i++;
+//     }
+//     if (s[i] == c)
+//         return (&(s[i]));
+//     return (0);
+// }
 
-    i = 0;
-    if (!s)
-        return (NULL);
-    while (s[i] && s[i] != c)
-    {
-        i++;
-    }
-    if (s[i] == c)
-        return (&(s[i]));
-    return (0);
-}
+// void    *ft_calloc(size_t n, size_t size)
+// {
+//     size_t  total_size;
+//     char    *ptr;
+//     size_t  i;
 
-void    *ft_calloc(size_t n, size_t size)
-{
-    size_t  total_size;
-    char    *ptr;
-    size_t  i;
-
-    total_size = n * size;
-    ptr = (char *)malloc(total_size);
-    i = 0;
-    if (!total_size)
-        return (NULL);
-    while (i < total_size)
-    {
-        ptr[i] = 0;
-        i++;
-    }
-    return ((void *)ptr);
-}
+//     total_size = n * size;
+//     ptr = (char *)malloc(total_size);
+//     i = 0;
+//     if (!total_size)
+//         return (NULL);
+//     while (i < total_size)
+//     {
+//         ptr[i] = 0;
+//         i++;
+//     }
+//     return ((void *)ptr);
+//}
 
 char    *concatenate_line(char *s1, char *s2)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
+/*   By: nambrako <nambrako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 11:46:10 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2026/03/11 16:58:01 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/12 13:48:08 by nambrako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "frame.h"
 # include "touch.h"
 # include "../get_next_line/get_next_line.h"
+# include "../libft/libft.h"
 
 void    rotate_player(t_data *data, double angle);
 int     render_frame(t_data *data);
@@ -37,8 +38,6 @@ void    init_game_data(t_data *data);
 int     close_game(t_data *data);
 void    free_map(char **map);
 void    run_raycasting_math(t_data *data, t_ray *ray, int x);
-int     ft_strlen(const char *s);
-int     ft_strcmp(const char *s1, const char *s2);
-void render_minimap(t_data *data);
+void    render_minimap(t_data *data);
 
 #endif
