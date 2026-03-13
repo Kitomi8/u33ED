@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
+/*   By: nambrako <nambrako@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 19:50:42 by nambrako          #+#    #+#             */
-/*   Updated: 2026/03/02 06:48:54 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2026/03/13 20:08:57 by nambrako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,34 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+
+	/* MAP */
 	char	**map;
+	int		map_width;
+	int		map_height;
+
+	/* PLAYER */
 	double	posX;
 	double	posY;
 	double	dirX;
 	double	dirY;
 	double	planeX;
 	double	planeY;
-	t_img	screen; 
+
+	/* TEXTURES PATH (from .cub) */
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
+
+	/* IMAGES */
+	t_img	screen;
 	t_img	wall_imgs[4]; // 0:Nord, 1:Sud, 2:Est, 3:Ouest
+
+	/* COLORS */
 	int		floor_color;
 	int		ceiling_color;
+
 }	t_data;
 
 #endif
